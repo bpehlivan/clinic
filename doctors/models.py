@@ -11,3 +11,4 @@ class Doctor(BaseModel):
     specialization = models.CharField(max_length=255)
     license_number = models.CharField(max_length=255)
     biography = models.TextField(null=True, blank=True)
+    is_active =models.BooleanField(default=True)
