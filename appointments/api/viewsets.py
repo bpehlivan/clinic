@@ -1,7 +1,4 @@
-from psycopg2.pool import AbstractConnectionPool
 from rest_framework import mixins
-from rest_framework.decorators import action
-from rest_framework.exceptions import APIException
 
 from api.viewsets import BaseGenericViewSet
 from appointments.api.serializers import (
@@ -24,26 +21,9 @@ class AppointmentViewSet(
     queryset = Appointment.objects.all()
 
     def perform_create(self, serializer):
-        doctor = serializer.validated_data.get("doctor")
-        slot_duration = doctor.get_timeslot_duration()
-
-        start_at = serializer.validated_data.get("start_at")
-        end_at = start_at + slot_duration
-
-        is_appointment_available = self.queryset.is_appointment_available(
-            doctor=doctor,
-            start_at=start_at,
-            end_at=end_at,
-        )
-
-        if not is_appointment_available:
-            raise APIException(
-                "Appointment slot is not available for given doctor and the date."
-            )
-
-        Appointment.objects.create(
-            doctor=doctor,
-            duration=(start_at, end_at),
+        Appointment.objects.create_appointment(
+            doctor=serializer.validated_data.get("doctor"),
+            start_at=serializer.validated_data.get("start_at"),
             patient_full_name=serializer.validated_data.get("patient_full_name"),
             patient_identity_number=serializer.validated_data.get(
                 "patient_identity_number"
