@@ -46,14 +46,13 @@ class Doctor(BaseModel):
         slot_duration = self.get_timeslot_duration()
         time_index = self.start_hour
         while time_index < self.end_hour:
+            timeslots.add(time_index.strftime("%H.%M"))
             time_index = (
                 datetime.combine(
                     date=datetime.today(),
                     time=time_index,
-                )
-                + slot_duration
+                ) + slot_duration
             ).time()
-            timeslots.add(time_index.strftime("%H.%M"))
 
         return timeslots
 
