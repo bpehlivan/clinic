@@ -34,7 +34,7 @@ SECRET_KEY = "django-insecure-uggh!c%$pytu6i=4&3q3&d+1g&ax72l#1@tp=3h@hishww5i)d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -47,6 +47,7 @@ PROJECT_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
+    "django_extensions",
 ]
 
 
