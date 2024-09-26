@@ -1,4 +1,5 @@
-from rest_framework import serializers, exceptions
+from rest_framework import serializers
+from rest_framework.exceptions import APIException
 
 from doctors.models import Doctor
 
@@ -50,12 +51,27 @@ class DoctorCreateSerializer(serializers.ModelSerializer):
             "specialization",
         )
 
+    def validate_start_hour(self, start_hour):
+        if start_hour.minute != 0:
+            raise APIException("Only hours can be selected like '08:00'")
+
+        return start_hour
+
+    def validate_end_hour(self, end_hour):
+        if end_hour.minute != 0:
+            raise APIException("Only hours can be selected like '17:00'")
+
+        return end_hour
+
     def to_internal_value(self, data):
         start_hour = data.get("start_hour")
         end_hour = data.get("end_hour")
 
         if start_hour >= end_hour:
-            raise exceptions.APIException("Start hour must be earlier than end hour.")
+            raise APIException("Start hour must be earlier than end hour.")
+
+
+        return super().to_internal_value(data=data)
 
 
 class AvailableAppointmentSlotsForDoctorSerializer(serializers.Serializer):
