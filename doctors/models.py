@@ -51,7 +51,8 @@ class Doctor(BaseModel):
                 datetime.combine(
                     date=datetime.today(),
                     time=time_index,
-                ) + slot_duration
+                )
+                + slot_duration
             ).time()
 
         return timeslots
