@@ -70,7 +70,6 @@ class DoctorCreateSerializer(serializers.ModelSerializer):
         if start_hour >= end_hour:
             raise APIException("Start hour must be earlier than end hour.")
 
-
         return super().to_internal_value(data=data)
 
 

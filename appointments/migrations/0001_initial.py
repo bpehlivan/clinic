@@ -7,27 +7,49 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('doctors', '0001_initial'),
+        ("doctors", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Appointment',
+            name="Appointment",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('duration', django.contrib.postgres.fields.ranges.DateTimeRangeField()),
-                ('patient_full_name', models.CharField(max_length=255)),
-                ('patient_identity_number', models.CharField(blank=True, max_length=255, null=True)),
-                ('doctor', models.ForeignKey(limit_choices_to={'is_active': True}, on_delete=django.db.models.deletion.DO_NOTHING, related_name='appointments', related_query_name='appointments', to='doctors.doctor')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "duration",
+                    django.contrib.postgres.fields.ranges.DateTimeRangeField(),
+                ),
+                ("patient_full_name", models.CharField(max_length=255)),
+                (
+                    "patient_identity_number",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                (
+                    "doctor",
+                    models.ForeignKey(
+                        limit_choices_to={"is_active": True},
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="appointments",
+                        related_query_name="appointments",
+                        to="doctors.doctor",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

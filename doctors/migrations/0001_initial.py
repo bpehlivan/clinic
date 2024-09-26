@@ -5,33 +5,70 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Doctor',
+            name="Doctor",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('full_name', models.CharField(max_length=255)),
-                ('email', models.EmailField(blank=True, max_length=254, null=True)),
-                ('phone_number', models.CharField(blank=True, max_length=15, null=True)),
-                ('address', models.TextField(blank=True, null=True)),
-                ('license_number', models.CharField(max_length=255)),
-                ('biography', models.TextField(blank=True, null=True)),
-                ('start_hour', models.TimeField()),
-                ('end_hour', models.TimeField()),
-                ('is_active', models.BooleanField(default=True)),
-                ('appointment_slot_choices', models.CharField(choices=[('fifteen_minutes', 'fifteen minutes'), ('thirty_minutes', 'thirty minutes'), ('hourly', 'hourly')], default='fifteen_minutes', max_length=32)),
-                ('specialization', models.CharField(blank=True, choices=[('internal_medicine', 'Internal Medicine'), ('family_medicine', 'Family Medicine'), ('pediatrics', 'Pediatrics'), ('cardiology', 'Cardiology'), ('dermatology', 'Dermatology'), ('neurology', 'Neurology'), ('psychiatry', 'Psychiatry'), ('surgery', 'Surgery')], max_length=64, null=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("full_name", models.CharField(max_length=255)),
+                ("email", models.EmailField(blank=True, max_length=254, null=True)),
+                (
+                    "phone_number",
+                    models.CharField(blank=True, max_length=15, null=True),
+                ),
+                ("address", models.TextField(blank=True, null=True)),
+                ("license_number", models.CharField(max_length=255)),
+                ("biography", models.TextField(blank=True, null=True)),
+                ("start_hour", models.TimeField()),
+                ("end_hour", models.TimeField()),
+                ("is_active", models.BooleanField(default=True)),
+                (
+                    "appointment_slot_choices",
+                    models.CharField(
+                        choices=[
+                            ("fifteen_minutes", "fifteen minutes"),
+                            ("thirty_minutes", "thirty minutes"),
+                            ("hourly", "hourly"),
+                        ],
+                        default="fifteen_minutes",
+                        max_length=32,
+                    ),
+                ),
+                (
+                    "specialization",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("internal_medicine", "Internal Medicine"),
+                            ("family_medicine", "Family Medicine"),
+                            ("pediatrics", "Pediatrics"),
+                            ("cardiology", "Cardiology"),
+                            ("dermatology", "Dermatology"),
+                            ("neurology", "Neurology"),
+                            ("psychiatry", "Psychiatry"),
+                            ("surgery", "Surgery"),
+                        ],
+                        max_length=64,
+                        null=True,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]
