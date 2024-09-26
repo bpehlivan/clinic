@@ -1,6 +1,3 @@
-from calendar import month
-from sys import modules
-
 from rest_framework import serializers
 
 from appointments.models import Appointment
@@ -16,6 +13,7 @@ class AppointmentCreateSerializer(serializers.ModelSerializer):
             "doctor",
             "patient_full_name",
             "patient_identity_number",
+            "start_at",
         )
 
 
