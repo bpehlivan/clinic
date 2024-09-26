@@ -12,13 +12,13 @@ Django = "^5.1.1"
 python-dotenv = "^1.0.1"
 psycopg2-binary = "^2.9.9"
 djangorestframework = "^3.15.2"
-ruff = "^0.6.7"
 
 
 [tool.poetry.group.dev.dependencies]
 django-extensions = "^3.2.3"
 ipython = "^8.27.0"
 ipdb = "^0.13.13"
+ruff = "^0.6.8"
 
 [build-system]
 requires = ["poetry-core"]
