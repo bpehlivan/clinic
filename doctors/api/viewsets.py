@@ -61,12 +61,15 @@ class DoctorViewSet(
             filled_timeslots = Appointment.objects.get_filled_timeslots(
                 doctor=doctor, date=index_date
             )
+            available_timeslots = list(all_slots - filled_timeslots)
+            available_timeslots.sort()
             daily_timeslots.append(
                 {
-                    "date": index_date.strftime("%d-%m-%Y"),
-                    "available_timeslots": list(all_slots - filled_timeslots),
+                    "date": index_date,
+                    "available_timeslots": available_timeslots,
                 }
             )
+            index_date += timedelta(days=1)
 
         serializer = self.get_serializer(data=daily_timeslots, many=True)
         serializer.is_valid(raise_exception=True)
