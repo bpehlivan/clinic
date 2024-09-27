@@ -18,11 +18,15 @@ class AppointmentCreateSerializer(serializers.ModelSerializer):
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
+    appointment_start = serializers.DateTimeField(source="duration.lower", read_only=True)
+    appointment_end = serializers.DateTimeField(source="duration.upper", read_only=True)
+
     class Meta:
         model = Appointment
         fields = (
             "doctor",
-            "duration",
+            "appointment_start",
+            "appointment_end",
             "patient_full_name",
             "patient_identity_number",
         )
