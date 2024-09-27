@@ -17,7 +17,7 @@ class Doctor(BaseModel):
     email = models.EmailField(null=True, blank=True)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     address = models.TextField(null=True, blank=True)
-    license_number = models.CharField(max_length=255)
+    license_number = models.CharField(null=True, blank=True, max_length=255)
     biography = models.TextField(null=True, blank=True)
 
     start_hour = models.TimeField()
